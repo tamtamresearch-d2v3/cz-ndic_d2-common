@@ -117,7 +117,7 @@ Typ záznamu (`@xsi:type` elementu `situationRecord`) určuje, co se stalo. Form
 `sit:EnvironmentalObstruction`, `sit:InfrastructureDamageObstruction`
 |Aktivity |`sit:PublicEvent`, `sit:DisturbanceActivity`, `sit:AuthorityOperation`
 |Podmínky provozu |`sit:WeatherRelatedRoadConditions` (stav vozovky vlivem počasí), `sit:NonWeatherRelatedRoadConditions`
-(písek, olej, rozsypaný náklad), `sit:PoorEnvironmentConditions` (srážky, viditelnost, vítr – rychlost v m/s, teplota),
+(písek, olej, rozsypaný náklad), `sit:PoorEnvironmentConditions` (srážky, dohlednost, vítr – rychlost v m/s, teplota),
 `sit:Conditions` (sjízdnost, např. sjízdné se zvýšenou opatrností)
 |Práce na silnici |`sit:ConstructionWorks`, `sit:MaintenanceWorks`
 |Řízení provozu |`sit:RoadOrCarriagewayOrLaneManagement` (uzavírky, změny uspořádání), `sit:ReroutingManagement`
@@ -131,7 +131,7 @@ a dočasné omezení rychlosti (`sit:SpeedManagement/temporarySpeedLimit`).
 
 ==== Nehody
 
-U nehody určuje `accidentType` druh nehody a `groupOfVehiclesInvolved` zúčastněná vozidla (typ vozidla,
+U nehody určuje `accidentType` typ nehody a `groupOfVehiclesInvolved` zúčastněná vozidla (typ vozidla,
 případně jeho stav, např. převrácené vozidlo). Nehoda s únikem látky (paliva, oleje, chemikálie) se publikuje
 jako dva záznamy: `sit:Accident` a `sit:GeneralObstruction` s `obstructionType` = `spillageOnTheRoad`.
 
