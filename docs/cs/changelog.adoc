@@ -21,7 +21,7 @@
    (dříve `affectedCarriagewayAndLanes`) jsou v `carriageway` s `lane/laneUsage`, popis místa (dříve
    `locationDescriptor`) v `infrastructureDescriptor`, resp. `geographicDescriptor`.
 ** `trafficConstrictionType` se uvádí přímo v záznamu (dříve v `impact`), a to jen u záznamů, které ho
-   v modelu 3.7 mají (nehody, překážky, aktivity, podmínky, dopravní proud); u prací na silnici rozsah omezení
+   v modelu 3.7 mají (nehody, překážky, aktivity, podmínky, abnormální provoz); u prací na silnici rozsah omezení
    vyjadřuje záznam `sit:RoadOrCarriagewayOrLaneManagement` a `impact`.
 ** Poloha se nepopisuje jednou liniovou polohou přes více komunikací: `loc:SingleRoadLinearLocation` je souvislý
    úsek jedné komunikace s nejvýše jedním `alertCLinear`, souvislá trasa přes více komunikací je
@@ -42,7 +42,7 @@
    `cz-ndic_d2-weather`. Ručně hlášené povětrnostní události zůstávají v tomto formátu.
 ** Profil je zúžen na prvky a hodnoty výčtů, které NDIC publikuje nebo které plní hlášení ALERT-C; vypuštěné
    hodnoty ALERT-C se vyjadřují obecnější hodnotou (např. tenisový turnaj `sportsMeeting`).
-** Obecná místa platnosti řízení provozu (`placesAtWhichApplicable`, např. „v tunelech“) se neuvádějí –
+** Obecná místa platnosti dopravních opatření (`placesAtWhichApplicable`, např. „v tunelech“) se neuvádějí –
    událost se vždy týká konkrétní polohy.
 ** Procenta délky úseku GN (`percentageDistanceAlong`) jsou v rozsahu 0–100 (dříve 0–1).
 ** Kód země ALERT-C (`alertCLocationCountryCode`) je `2` (dříve `CZ`).
@@ -51,11 +51,11 @@
 ** Naléhavost (`urgency`) se neuvádí.
 ** Změněné hodnoty: `earlierAccident` → `earlierIncident`; `seriousAccident` → `seriousInjuryOrFatalAccident`;
    `multivehicleAccident` → `multipleVehicleAccident`; kluzká vozovka z povětrnostní příčiny `slippery`
-   (dříve `slipperyRoad`); porucha služeb odpočívky je záznam `sit:ServiceDisruption`; bezohledný řidič záznam
+   (dříve `slipperyRoad`); narušení služeb odpočívky je záznam `sit:ServiceDisruption`; bezohledný řidič záznam
    `sit:VehicleObstruction`.
 ** Původní počet pruhů (`originalNumberOfLanes`) se uvádí u jízdního pásu (`carriageway`), ne v `impact`.
 * Původ dat:
 ** Většina událostí vzniká z hlášení ALERT-C (kódy událostí a kvantifikátory podle <<ISO14819-2>>).
 ** Směrovost události (`alertCAffectedDirection`) vychází ze směrovosti v katalogu událostí ALERT-C <<ISO14819-2>>.
-** Objížďky (`sit:ReroutingManagement`) a dočasné omezení rychlosti (`sit:SpeedManagement/temporarySpeedLimit`) jsou
+** Objízdná opatření (`sit:ReroutingManagement`) a dočasné omezení rychlosti (`sit:SpeedManagement/temporarySpeedLimit`) jsou
    součástí profilu; odběratel s nimi má počítat jako s nepovinnými.

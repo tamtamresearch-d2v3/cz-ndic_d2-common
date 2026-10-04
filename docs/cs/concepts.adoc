@@ -61,7 +61,7 @@ include::{samplesdir}/accident.xml[tag=situation-head,indent=0]
 ----
 
 Vlastní informace nesou záznamy `situationRecord`. V jedné situaci může být záznamů více, každý jiného
-typu (`@xsi:type`) – typicky příčina (např. nehoda) a její důsledek (např. uzavření silnice). Identifikátor
+typu (`@xsi:type`) – typicky příčina (např. nehoda) a její důsledek (např. uzavření komunikace). Identifikátor
 záznamu je odvozen od identifikátoru situace a typu záznamu; situace proto obsahuje nejvýše jeden záznam každého typu.
 
 [[verzovani]]
@@ -111,22 +111,22 @@ Typ záznamu (`@xsi:type` elementu `situationRecord`) určuje, co se stalo. Form
 [cols="2,3",options="header"]
 |===
 |Oblast |Typy záznamů
-|Dopravní proud (kolony, zvýšená zátěž) |`sit:AbnormalTraffic`
+|Abnormální provoz (kolony, zvýšená zátěž) |`sit:AbnormalTraffic`
 |Nehody |`sit:Accident`
 |Překážky |`sit:VehicleObstruction`, `sit:GeneralObstruction`, `sit:AnimalPresenceObstruction`,
 `sit:EnvironmentalObstruction`, `sit:InfrastructureDamageObstruction`
 |Aktivity |`sit:PublicEvent`, `sit:DisturbanceActivity`, `sit:AuthorityOperation`
-|Podmínky provozu |`sit:WeatherRelatedRoadConditions` (stav vozovky vlivem počasí), `sit:NonWeatherRelatedRoadConditions`
+|Podmínky pro jízdu |`sit:WeatherRelatedRoadConditions` (stav vozovky související s počasím), `sit:NonWeatherRelatedRoadConditions`
 (písek, olej, rozsypaný náklad), `sit:PoorEnvironmentConditions` (srážky, dohlednost, vítr – rychlost v m/s, teplota),
 `sit:Conditions` (sjízdnost, např. sjízdné se zvýšenou opatrností)
 |Práce na silnici |`sit:ConstructionWorks`, `sit:MaintenanceWorks`
-|Řízení provozu |`sit:RoadOrCarriagewayOrLaneManagement` (uzavírky, změny uspořádání), `sit:ReroutingManagement`
+|Dopravní opatření |`sit:RoadOrCarriagewayOrLaneManagement` (uzavírky, změny uspořádání), `sit:ReroutingManagement`
 (objížďky), `sit:SpeedManagement` (omezení rychlosti), `sit:GeneralNetworkManagement`,
 `sit:GeneralInstructionOrMessageToRoadUsers`
 |Služby |`sit:ServiceDisruption` (např. uzavřená odpočívka)
 |===
 
-Profil obsahuje prvky modelu, které NDIC publikuje, a navíc objížďky (`sit:ReroutingManagement`)
+Profil obsahuje prvky modelu, které NDIC publikuje, a navíc objízdná opatření (`sit:ReroutingManagement`)
 a dočasné omezení rychlosti (`sit:SpeedManagement/temporarySpeedLimit`).
 
 ==== Nehody
@@ -157,7 +157,7 @@ include::{samplesdir}/lane-closure.xml[tag=lane-closure,indent=0]
 [[dopady]]
 === Dopady a příčiny
 
-Dopad události se popisuje v elementu `impact` – odhadem zbytkové kapacity komunikace
+Dopad události se popisuje v elementu `impact` – odhadem zbývající kapacity komunikace
 (`capacityRemaining`, při úplném uzavření 0), počtem průjezdných (`numberOfOperationalLanes`) nebo omezených
 (`numberOfLanesRestricted`) jízdních pruhů, případně očekávaným zdržením (`delays`).
 
@@ -179,7 +179,7 @@ include::{samplesdir}/closure-route.xml[tag=closure,indent=0]
 ----
 
 Příčina se zpravidla popisuje samostatným záznamem téže situace – např. nehoda, překážka na vozovce
-a z nich plynoucí uzavírka silnice jsou tři záznamy jedné situace (vzorek `accident.xml`). Je-li příčina známa jen jako druh, uvádí se
+a z nich plynoucí uzavírka komunikace jsou tři záznamy jedné situace (vzorek `accident.xml`). Je-li příčina známa jen jako typ, uvádí se
 hodnotou výčtu v elementu `cause` (`causeType`); následná událost jiné události se označuje `earlierIncident`.
 
 .Nehoda, překážka a uzavírka jako tři záznamy jedné situace (vzorek `accident.xml`, zkráceno)
@@ -387,7 +387,7 @@ III. třídy), popisuje se jako trasa – `locationReference` typu `loc:Itinerar
 * Části jsou v pořadí jízdy (u obousměrné polohy v pořadí prvního směru), konec části je počátkem následující
   a části se nepřekrývají. Směrovost je ve všech částech shodná.
 * Novou část nezakládá úsek jiné komunikace uvnitř křižovatky, krátká spojka ani souběh dvou silnic. Má-li
-  poloha popis ALERT-C, odpovídá každá část jedné cestě lokační tabulky ALERT-C.
+  poloha popis ALERT-C, odpovídá každá část jedné komunikaci lokační tabulky ALERT-C.
 * Trasa má nejméně dvě části. Poloha na jedné komunikaci je vždy přímo
   `loc:SingleRoadLinearLocation`.
 
