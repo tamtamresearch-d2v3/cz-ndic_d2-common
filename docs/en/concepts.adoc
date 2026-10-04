@@ -4,8 +4,8 @@ The format provides general information on the traffic situation on the road net
 accidents, obstructions, queues, closures and restrictions, roadworks, road operator actions and the
 effects of weather on road conditions.
 
-Two narrowed formats are derived from this format: `cz-ndic_d2-restrictions` is its subset limited to
-closures and traffic restrictions (road operator actions), and `cz-ndic_d2-weather` takes over its records
+Two narrowed formats are derived from this format: `x-format:cz-ndic_d2-restrictions-v2.0` is its subset limited to
+closures and traffic restrictions (road operator actions), and `x-format:cz-ndic_d2-weather-v2.0` takes over its records
 on weather conditions, narrowed to warnings of hazardous weather conditions.
 
 The format is based on the DATEX II publication `sit:SituationPublication` <<EN16157-3>>. It uses the DATEX II 3.7 model without national extensions.
@@ -184,15 +184,26 @@ explicitly (`applicableForTrafficDirection` = `bothWays`) and the impact on the 
 include::{samplesdir}/closure-route.xml[tag=closure,indent=0]
 ----
 
-The cause is usually described by a separate record of the same situation – e.g. an accident and the
-resulting road closure are two records of one situation (sample `accident.xml`). If only the kind of cause is
+The cause is usually described by a separate record of the same situation – e.g. an accident, an obstruction
+on the road and the resulting road closure are three records of one situation (sample `accident.xml`). If only the kind of cause is
 known, it is given by an enumeration value in the `cause` element (`causeType`); an event following another
 event is marked `earlierIncident`.
 
-.Accident and closure as two records of one situation (sample `accident.xml`)
+.Accident, obstruction and closure as three records of one situation (sample `accident.xml`, shortened)
 [source,xml]
 ----
-include::{samplesdir}/accident.xml[tag=closure,indent=0]
+include::{samplesdir}/accident.xml[tag=rec-accident,indent=0]
+  <!-- … -->
+include::{samplesdir}/accident.xml[tag=accident,indent=2]
+</sit:situationRecord>
+include::{samplesdir}/accident.xml[tag=rec-obstruction,indent=0]
+  <!-- … -->
+include::{samplesdir}/accident.xml[tag=obstruction,indent=2]
+</sit:situationRecord>
+include::{samplesdir}/accident.xml[tag=rec-closure,indent=0]
+  <!-- … -->
+include::{samplesdir}/accident.xml[tag=closure,indent=2]
+</sit:situationRecord>
 ----
 
 [[platnost]]
@@ -262,13 +273,16 @@ The affected carriageway, lanes or kind of place (e.g. a bridge) are specified b
 
 IMPORTANT: The location referencing methods are described identically in all NDIC formats that use them.
 Graphical illustrations of the methods (ALERT-C locations and direction, bidirectional location in OpenLR, location
-composed of Global Network sections) are given in the documentation of the format `cz-ndic_d2-pls`,
+composed of Global Network sections) are given in the documentation of the format `x-format:cz-ndic_d2-pls-v2.0`,
 chapter Location referencing.
 
 [[alertc]]
 === ALERT-C location referencing
 
 include::{kitdir}/shared/en/poloha/alertc.adoc[]
+
+.ALERT-C location referencing – direction, secondary and primary location
+image::alertc-poloha-en.svg[ALERT-C – direction and locations,width=680,align="center"]
 
 In messages about events the following also applies:
 
@@ -425,7 +439,7 @@ sections:
    they can be encoded for that section (ALERT-C locations cover only part of the road network),
 ** the order of the sections has no meaning.
 * *Recurring area* (regular winter closures, permanent diversion routes) – reference to a predefined group
-  of the `cz-ndic_d2-pls` format:
+  of the `x-format:cz-ndic_d2-pls-v2.0` format:
 ** `locationReference` of type `loc:LocationGroupByReference`,
 ** with `predefinedLocationGroupReference` (`@targetClass` = `loc:PredefinedLocationGroup`).
 

@@ -3,8 +3,8 @@
 Formát poskytuje obecné informace o dopravní situaci na silniční síti ČR: nehody, překážky, kolony,
 uzavírky a omezení, práce na silnici, akce správce komunikace a vlivy počasí na sjízdnost.
 
-Z tohoto formátu vycházejí dva zúžené formáty: `cz-ndic_d2-restrictions` je jeho podmnožinou omezenou na
-uzavírky a omezení provozu (akce správce komunikace) a `cz-ndic_d2-weather` z něj přebírá záznamy
+Z tohoto formátu vycházejí dva zúžené formáty: `x-format:cz-ndic_d2-restrictions-v2.0` je jeho podmnožinou omezenou na
+uzavírky a omezení provozu (akce správce komunikace) a `x-format:cz-ndic_d2-weather-v2.0` z něj přebírá záznamy
 o povětrnostních podmínkách, zúžené na výstrahy před nebezpečnými povětrnostními podmínkami.
 
 Formát vychází z DATEX II publikace `sit:SituationPublication` <<EN16157-3>>. Používá model DATEX II 3.7 bez národních rozšíření.
@@ -178,14 +178,25 @@ směru v elementu `impactOnOppositeDirection`.
 include::{samplesdir}/closure-route.xml[tag=closure,indent=0]
 ----
 
-Příčina se zpravidla popisuje samostatným záznamem téže situace – např. nehoda a z ní plynoucí uzavírka
-silnice jsou dva záznamy jedné situace (vzorek `accident.xml`). Je-li příčina známa jen jako druh, uvádí se
+Příčina se zpravidla popisuje samostatným záznamem téže situace – např. nehoda, překážka na vozovce
+a z nich plynoucí uzavírka silnice jsou tři záznamy jedné situace (vzorek `accident.xml`). Je-li příčina známa jen jako druh, uvádí se
 hodnotou výčtu v elementu `cause` (`causeType`); následná událost jiné události se označuje `earlierIncident`.
 
-.Nehoda a uzavírka jako dva záznamy jedné situace (vzorek `accident.xml`)
+.Nehoda, překážka a uzavírka jako tři záznamy jedné situace (vzorek `accident.xml`, zkráceno)
 [source,xml]
 ----
-include::{samplesdir}/accident.xml[tag=closure,indent=0]
+include::{samplesdir}/accident.xml[tag=rec-accident,indent=0]
+  <!-- … -->
+include::{samplesdir}/accident.xml[tag=accident,indent=2]
+</sit:situationRecord>
+include::{samplesdir}/accident.xml[tag=rec-obstruction,indent=0]
+  <!-- … -->
+include::{samplesdir}/accident.xml[tag=obstruction,indent=2]
+</sit:situationRecord>
+include::{samplesdir}/accident.xml[tag=rec-closure,indent=0]
+  <!-- … -->
+include::{samplesdir}/accident.xml[tag=closure,indent=2]
+</sit:situationRecord>
 ----
 
 [[platnost]]
@@ -252,12 +263,15 @@ Dotčený jízdní pás, jízdní pruhy nebo druh místa (např. most) upřesňu
 
 IMPORTANT: Metody popisu polohy jsou popsány shodně ve všech formátech NDIC, které je používají. Grafické
 ukázky metod (lokace ALERT-C a směr, obousměrná poloha v OpenLR, složení polohy z úseků Global Network)
-obsahuje dokumentace formátu `cz-ndic_d2-pls`, kapitola Popisování poloh.
+obsahuje dokumentace formátu `x-format:cz-ndic_d2-pls-v2.0`, kapitola Popisování poloh.
 
 [[alertc]]
 === Popis polohy pomocí ALERT-C
 
 include::{kitdir}/shared/cs/poloha/alertc.adoc[]
+
+.Popis polohy pomocí ALERT-C – směr, sekundární a primární lokace
+image::alertc-poloha.svg[ALERT-C – směr a lokace,width=680,align="center"]
 
 Ve zprávách o událostech platí navíc:
 
@@ -408,7 +422,7 @@ jedním záznamem, jehož poloha je skupinou úseků:
    úsek zakódovat (lokace ALERT-C pokrývají jen část silniční sítě),
 ** pořadí úseků nemá význam.
 * *Opakující se oblast* (pravidelné zimní uzavírky, stálé objízdné trasy) – odkaz na předdefinovanou
-  skupinu formátu `cz-ndic_d2-pls`:
+  skupinu formátu `x-format:cz-ndic_d2-pls-v2.0`:
 ** `locationReference` typu `loc:LocationGroupByReference`,
 ** s `predefinedLocationGroupReference` (`@targetClass` = `loc:PredefinedLocationGroup`).
 

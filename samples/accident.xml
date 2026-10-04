@@ -17,7 +17,9 @@
     </sit:headerInformation>
     <!-- end::situation-head[] -->
     <!-- tag::record-meta[] -->
+    <!-- tag::rec-accident[] -->
     <sit:situationRecord xsi:type="sit:Accident" id="ff808181-a043-1596-01a0-f6f60e2024a5_Accident" version="6">
+    <!-- end::rec-accident[] -->
       <sit:situationRecordCreationTime>2026-10-01T12:19:04+02:00</sit:situationRecordCreationTime>
       <sit:situationRecordVersionTime>2026-10-01T13:14:10+02:00</sit:situationRecordVersionTime>
       <sit:probabilityOfOccurrence>certain</sit:probabilityOfOccurrence>
@@ -135,7 +137,9 @@
       <sit:accidentType>accident</sit:accidentType>
       <!-- end::accident[] -->
     </sit:situationRecord>
+    <!-- tag::rec-obstruction[] -->
     <sit:situationRecord xsi:type="sit:GeneralObstruction" id="ff808181-a043-1596-01a0-f6f60e2024a5_GeneralObstruction" version="6">
+    <!-- end::rec-obstruction[] -->
       <sit:situationRecordCreationTime>2026-10-01T12:19:04+02:00</sit:situationRecordCreationTime>
       <sit:situationRecordVersionTime>2026-10-01T13:14:10+02:00</sit:situationRecordVersionTime>
       <sit:probabilityOfOccurrence>certain</sit:probabilityOfOccurrence>
@@ -244,9 +248,13 @@
           </loc:toPoint>
         </loc:linearWithinLinearElement>
       </sit:locationReference>
+      <!-- tag::obstruction[] -->
       <sit:obstructionType>objectOnTheRoad</sit:obstructionType>
+      <!-- end::obstruction[] -->
     </sit:situationRecord>
+    <!-- tag::rec-closure[] -->
     <sit:situationRecord xsi:type="sit:RoadOrCarriagewayOrLaneManagement" id="ff808181-a043-1596-01a0-f6f60e2024a5_RoadOrCarriagewayOrLaneManagement" version="6">
+    <!-- end::rec-closure[] -->
       <sit:situationRecordCreationTime>2026-10-01T12:19:04+02:00</sit:situationRecordCreationTime>
       <sit:situationRecordVersionTime>2026-10-01T13:14:10+02:00</sit:situationRecordVersionTime>
       <sit:probabilityOfOccurrence>certain</sit:probabilityOfOccurrence>
